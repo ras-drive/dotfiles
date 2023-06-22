@@ -25,7 +25,18 @@ then
 fi
 
 echo "installing needed packages"
-sudo paru -S --needed i3-wm i3status rofi alacritty xorg-xrandr nitrogen ttf-jetbrains-mono
+paru -S --needed i3-wm i3lock i3blocks i3status lightdm lightdm-gtk-greeter  \
+	dmenu rofi alacritty xorg-xrandr nitrogen ttf-jetbrains-mono
 
+# sets wallpaper for nitrogen --restore in i3 config file
 echo "setting wallpaper"
-nitrogen ~/wallpaper.png && echo "wallpaper set" || echo "error setting wallpaper, default wallpaper location is ~/wallpaper.png"
+nitrogen ~/.config/wallpaper.png && echo "wallpaper set" || echo "error setting wallpaper, default wallpaper location is ~/wallpaper.png"
+
+if [ "$(basename pwd)" == "dotfiles" ]; then
+	echo "copying files to ~/.config"
+	cp ./* ~/.config
+	rm ~/.config/install.sh
+else
+	echo "not in a cloned repo"
+	exit 1
+fi
