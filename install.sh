@@ -36,6 +36,7 @@ if [ "$(basename pwd)" == "dotfiles" ]; then
 	echo "copying files to ~/.config"
 	cp ./* ~/.config
 	rm ~/.config/install.sh
+	rm ~/.config/desktop.png
 else
 	echo "not in a cloned repo"
 	exit 1
